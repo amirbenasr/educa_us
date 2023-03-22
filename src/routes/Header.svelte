@@ -1,12 +1,11 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
-	import educa_logo from '$lib/images/educa_logo.png';
+	let y;
 </script>
 
-<header>
-	<div class="logos">
+<svelte:window bind:scrollY={y} />
+<header class:shrink-header={y >= 50}>
+	<div class="logos" class:shrink={y >= 50}>
 		<div class="corner logo-span">
 			<a href="#">
 				<span class="logo-title"> <span class="capital-title">E</span> | Educa US</span>
@@ -26,7 +25,7 @@
 				<a href="/about">About</a>
 			</li>
 			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
+				<a href="/articles">Articles</a>
 			</li>
 		</ul>
 		<!-- <svg viewBox="0 0 2 3" aria-hidden="true">
@@ -38,13 +37,8 @@
 <style>
 	.logos {
 		transition: all;
-		width: 50px;
-		transition-duration: 3s;
-	}
-	.logos:hover {
-		width: 500px;
-		background-color: red;
-		/* transform: translateX(200px); */
+		width: auto;
+		/* transition-duration: 3s; */
 	}
 
 	.logo-span span {
@@ -65,8 +59,30 @@
 	header {
 		height: auto;
 		display: flex;
+		position: fixed;
+		width: 100%;
+		height: 90px;
 		justify-content: space-between;
 		background-color: var(--color-theme-1);
+	}
+
+	.shrink {
+		/* animation: sh 1s ease-in 0s forwards; */
+		transition: all 200ms ease-in 200ms;
+		transform: scale3d(0.8, 0.8, 0.8);
+	}
+
+	.shrink-header {
+		animation: sh 1s ease-in-out 0s forwards;
+	}
+
+	@keyframes sh {
+		0% {
+			height: 90px;
+		}
+		100% {
+			height: 72px;
+		}
 	}
 
 	.corner a {
