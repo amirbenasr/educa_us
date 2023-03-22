@@ -1,11 +1,26 @@
 <script>
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 	let y;
+	onMount(() => {
+		const header = document.querySelector('header');
+		const capitalTitle = document.querySelector('.logo-title');
+		document.addEventListener('scroll', (e) => {
+			if (y > 50) {
+				header?.classList.add('shrink-header');
+				capitalTitle?.classList.add('shrink');
+			} else {
+				capitalTitle?.classList.remove('shrink');
+
+				header?.classList.remove('shrink-header');
+			}
+		});
+	});
 </script>
 
 <svelte:window bind:scrollY={y} />
-<header class:shrink-header={y >= 50}>
-	<div class="logos" class:shrink={y >= 50}>
+<header>
+	<div class="logos">
 		<div class="corner logo-span">
 			<a href="#">
 				<span class="logo-title"> <span class="capital-title">E</span> | Educa US</span>
@@ -46,43 +61,37 @@
 	}
 	.capital-title {
 		font-weight: bold;
-		font-size: 72px;
+		font-size: 4rem;
 	}
 	.logo-title {
 		font-family: Georgia, 'Times New Roman', Times, serif;
-		font-size: 40px;
+		font-size: 3rem;
 		font-weight: bold;
 		color: white;
 		font-size: x-large;
 		margin-left: 4em;
+		transition: all 300ms ease-in;
 	}
 	header {
 		height: auto;
 		display: flex;
 		position: fixed;
+		z-index: 9999;
 		width: 100%;
-		height: 90px;
+		height: 80px;
+		align-items: center;
 		justify-content: space-between;
+		transition: all 200ms ease-in;
 		background-color: var(--color-theme-1);
 	}
 
-	.shrink {
+	:global(.shrink) {
 		/* animation: sh 1s ease-in 0s forwards; */
-		transition: all 200ms ease-in 200ms;
-		transform: scale3d(0.8, 0.8, 0.8);
+		transform: translateX(-80px) scale3d(0.8, 0.8, 0.8);
 	}
 
-	.shrink-header {
-		animation: sh 1s ease-in-out 0s forwards;
-	}
-
-	@keyframes sh {
-		0% {
-			height: 90px;
-		}
-		100% {
-			height: 72px;
-		}
+	:global(.shrink-header) {
+		height: 60px !important;
 	}
 
 	.corner a {
