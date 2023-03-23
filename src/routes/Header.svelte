@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	let y;
+	let y: number;
 	onMount(() => {
 		const header = document.querySelector('header');
 		const capitalTitle = document.querySelector('.logo-title');
