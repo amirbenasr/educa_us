@@ -1,6 +1,7 @@
 {
 	"name": "educa-us",
 	"version": "0.0.1",
+	"license": "hello world",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
