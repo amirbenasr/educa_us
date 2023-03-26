@@ -1,18 +1,11 @@
-# create-svelte
+# sveltekit
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This repo contains code for a SvelteKit application generated using the [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte) package.
 
-## Creating a project
+To create your own SvelteKit project, you can either
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- [Create your own repo from this template](https://github.com/render-examples/sveltekit/generate) and modify it for your needs
+- Create a new SvelteKit project by following the [SvelteKit Getting Started Guide](https://kit.svelte.dev/docs) and then making a few small modifications as shown in [this commit](https://github.com/render-examples/sveltekit/commit/3ea50803f118da041745fd8cb51094972ac87f3c) to deploy it to Render as a Node.js service.
 
 ## Developing
 
@@ -27,12 +20,25 @@ npm run dev -- --open
 
 ## Building
 
+<<<<<<< HEAD
 To create a production version of your app:
 
+=======
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 ```bash
 npm run build
 ```
 
+<<<<<<< HEAD
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+=======
+> You can preview the built app with `npm run preview`. This should _not_ be used to serve your app in production.
+
+## Deploying to Render
+
+Follow the deploy instructions at https://render.com/docs/deploy-sveltekit
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/render-examples/sveltekit)
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a

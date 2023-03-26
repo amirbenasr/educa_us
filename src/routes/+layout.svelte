@@ -1,5 +1,9 @@
 <script>
+<<<<<<< HEAD
 	import Header from '../components/Header.svelte';
+=======
+	import Header from './Header.svelte';
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 	import './styles.css';
 </script>
 
@@ -11,7 +15,11 @@
 	</main>
 
 	<footer>
+<<<<<<< HEAD
 		<p>visit <a href="#">educa.us</a> to apply for your Visa</p>
+=======
+		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 	</footer>
 </div>
 
@@ -26,7 +34,14 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
+<<<<<<< HEAD
 		width: 100%;
+=======
+		padding: 1rem;
+		width: 100%;
+		max-width: 64rem;
+		margin: 0 auto;
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 		box-sizing: border-box;
 	}
 

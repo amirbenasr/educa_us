@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script lang="ts">
 	import { confetti } from '@neoconfetti/svelte';
 	import { enhance } from '$app/forms';
@@ -7,6 +8,17 @@
 	export let data: PageData;
 
 	export let form: ActionData;
+=======
+<script>
+	import { confetti } from '@neoconfetti/svelte';
+	import { enhance } from '$app/forms';
+
+	/** @type {import('./$types').PageData} */
+	export let data;
+
+	/** @type {import('./$types').ActionData} */
+	export let form;
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 
 	/** Whether or not the user has won */
 	$: won = data.answers.at(-1) === 'xxxxx';
@@ -20,6 +32,7 @@
 	/**
 	 * A map of classnames for all letters that have been guessed,
 	 * used for styling the keyboard
+<<<<<<< HEAD
 	 */
 	let classnames: Record<string, 'exact' | 'close' | 'missing'>;
 
@@ -32,6 +45,14 @@
 	$: {
 		classnames = {};
 		description = {};
+=======
+	 * @type {Record<string, 'exact' | 'close' | 'missing'>}
+	 */
+	let classnames;
+
+	$: {
+		classnames = {};
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 
 		data.answers.forEach((answer, i) => {
 			const guess = data.guesses[i];
@@ -41,10 +62,15 @@
 
 				if (answer[i] === 'x') {
 					classnames[letter] = 'exact';
+<<<<<<< HEAD
 					description[letter] = 'correct';
 				} else if (!classnames[letter]) {
 					classnames[letter] = answer[i] === 'c' ? 'close' : 'missing';
 					description[letter] = answer[i] === 'c' ? 'present' : 'absent';
+=======
+				} else if (!classnames[letter]) {
+					classnames[letter] = answer[i] === 'c' ? 'close' : 'missing';
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 				}
 			}
 		});
@@ -53,12 +79,20 @@
 	/**
 	 * Modify the game state without making a trip to the server,
 	 * if client-side JavaScript is enabled
+<<<<<<< HEAD
 	 */
 	function update(event: MouseEvent) {
 		const guess = data.guesses[i];
 		const key = (event.target as HTMLButtonElement).getAttribute(
 			'data-key'
 		);
+=======
+	 * @param {MouseEvent} event
+	 */
+	function update(event) {
+		const guess = data.guesses[i];
+		const key = /** @type {HTMLButtonElement} */ (event.target).getAttribute('data-key');
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 
 		if (key === 'backspace') {
 			data.guesses[i] = guess.slice(0, -1);
@@ -71,8 +105,14 @@
 	/**
 	 * Trigger form logic in response to a keydown event, so that
 	 * desktop users can use the keyboard to play the game
+<<<<<<< HEAD
 	 */
 	function keydown(event: KeyboardEvent) {
+=======
+	 * @param {KeyboardEvent} event
+	 */
+	function keydown(event) {
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 		if (event.metaKey) return;
 
 		document
@@ -83,6 +123,7 @@
 
 <svelte:window on:keydown={keydown} />
 
+<<<<<<< HEAD
 <svelte:head>
 	<title>Sverdle</title>
 	<meta name="description" content="A Wordle clone written in SvelteKit" />
@@ -100,11 +141,15 @@
 		};
 	}}
 >
+=======
+<form method="POST" action="?/enter" use:enhance>
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 	<a class="how-to-play" href="/sverdle/how-to-play">How to play</a>
 
 	<div class="grid" class:playing={!won} class:bad-guess={form?.badGuess}>
 		{#each Array(6) as _, row}
 			{@const current = row === i}
+<<<<<<< HEAD
 			<h2 class="visually-hidden">Row {row + 1}</h2>
 			<div class="row" class:current>
 				{#each Array(5) as _, column}
@@ -129,6 +174,22 @@
 						</span>
 						<input name="guess" disabled={!current} type="hidden" {value} />
 					</div>
+=======
+
+			<div class="row" class:current>
+				{#each Array(5) as _, column}
+					{@const answer = data.answers[row]?.[column]}
+
+					<input
+						name="guess"
+						disabled={!current}
+						readonly
+						class:exact={answer === 'x'}
+						class:close={answer === 'c'}
+						aria-selected={current && column === data.guesses[row].length}
+						value={data.guesses[row]?.[column] ?? ''}
+					/>
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 				{/each}
 			</div>
 		{/each}
@@ -139,12 +200,20 @@
 			{#if !won && data.answer}
 				<p>the answer was "{data.answer}"</p>
 			{/if}
+<<<<<<< HEAD
 			<button data-key="enter" class="restart selected" formaction="?/restart">
+=======
+			<button data-key="enter" aria-selected="true" class="restart" formaction="?/restart">
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 				{won ? 'you won :)' : `game over :(`} play again?
 			</button>
 		{:else}
 			<div class="keyboard">
+<<<<<<< HEAD
 				<button data-key="enter" class:selected={submittable} disabled={!submittable}>enter</button>
+=======
+				<button data-key="enter" aria-selected={submittable} disabled={!submittable}>enter</button>
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 
 				<button
 					on:click|preventDefault={update}
@@ -167,7 +236,10 @@
 								formaction="?/update"
 								name="key"
 								value={letter}
+<<<<<<< HEAD
 								aria-label="{letter} {description[letter] || ''}"
+=======
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 							>
 								{letter}
 							</button>
@@ -183,7 +255,10 @@
 	<div
 		style="position: absolute; left: 50%; top: 30%"
 		use:confetti={{
+<<<<<<< HEAD
 			particleCount: $reduced_motion ? 0 : undefined,
+=======
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 			force: 0.7,
 			stageWidth: window.innerWidth,
 			stageHeight: window.innerHeight,
@@ -234,7 +309,11 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
+<<<<<<< HEAD
 		justify-content: flex-start;
+=======
+		justify-content: start;
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 	}
 
 	.grid .row {
@@ -244,17 +323,26 @@
 		margin: 0 0 0.2rem 0;
 	}
 
+<<<<<<< HEAD
 	@media (prefers-reduced-motion: no-preference) {
 		.grid.bad-guess .row.current {
 			animation: wiggle 0.5s;
 		}
+=======
+	.grid.bad-guess .row.current {
+		animation: wiggle 0.5s;
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 	}
 
 	.grid.playing .row.current {
 		filter: drop-shadow(3px 3px 10px var(--color-bg-0));
 	}
 
+<<<<<<< HEAD
 	.letter {
+=======
+	input {
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 		aspect-ratio: 1;
 		width: 100%;
 		display: flex;
@@ -271,16 +359,25 @@
 		color: rgba(0, 0, 0, 0.7);
 	}
 
+<<<<<<< HEAD
 	.letter.missing {
+=======
+	input:disabled:not(.exact):not(.close) {
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 		background: rgba(255, 255, 255, 0.5);
 		color: rgba(0, 0, 0, 0.5);
 	}
 
+<<<<<<< HEAD
 	.letter.exact {
+=======
+	input.exact {
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 		background: var(--color-theme-2);
 		color: white;
 	}
 
+<<<<<<< HEAD
 	.letter.close {
 		border: 2px solid var(--color-theme-2);
 	}
@@ -289,6 +386,25 @@
 		outline: 2px solid var(--color-theme-1);
 	}
 
+=======
+	input.close {
+		border: 2px solid var(--color-theme-2);
+	}
+
+	input:focus {
+		outline: none;
+	}
+
+	[aria-selected='true'] {
+		outline: 2px solid var(--color-theme-1);
+	}
+
+	input:not(:disabled)::selection {
+		background: transparent;
+		color: var(--color-theme-1);
+	}
+
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 	.controls {
 		text-align: center;
 		justify-content: center;

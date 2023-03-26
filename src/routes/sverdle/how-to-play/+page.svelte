@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 <svelte:head>
 	<title>How to play Sverdle</title>
 	<meta name="description" content="How to play Sverdle" />
 </svelte:head>
 
+=======
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 <div class="text-column">
 	<h1>How to play Sverdle</h1>
 
@@ -75,7 +78,11 @@
 
 	.example {
 		display: flex;
+<<<<<<< HEAD
 		justify-content: flex-start;
+=======
+		justify-content: start;
+>>>>>>> 53397c0b8748ce8abc365c0b420f89c00211a21a
 		margin: 1rem 0;
 		gap: 0.2rem;
 	}
