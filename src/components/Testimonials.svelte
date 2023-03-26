@@ -3,14 +3,14 @@
 	import { testimonials } from '../utils';
 	import Testimonial from './Testimonial.svelte';
 	let index = 0;
-	const scrollInterval = setInterval(() => {
-		console.log("what's going on");
+	let time = 3000;
+	let scrollInterval = setInterval(() => {
 		if (index > 4) {
 			index = 0;
 			return;
 		}
 		index += 1;
-	}, 3000);
+	}, time);
 
 	onDestroy(() => {
 		clearInterval(scrollInterval);
@@ -33,6 +33,14 @@
 				on:keydown={() => {}}
 				on:click={(e) => {
 					index = currentIndex;
+					clearInterval(scrollInterval);
+					scrollInterval = setInterval(() => {
+						if (index > 4) {
+							index = 0;
+							return;
+						}
+						index += 1;
+					}, time);
 				}}
 			>
 				<img
@@ -65,6 +73,7 @@
 		display: flex;
 		width: 100%;
 	}
+
 	.section-footer {
 		display: flex;
 		justify-content: center;

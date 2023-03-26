@@ -13,3 +13,8 @@ vite.config.ts.timestamp-*
 src/lib/videos/educa_video.mp4
 src/lib/images/students/
 static/students/
+!static/students/Photos/img_1.jpg
+!static/students/Photos/img_2.jpg
+!static/students/Photos/img_3.jpg
+!static/students/Photos/img_4.jpg
+!static/students/Photos/img_5.jpg

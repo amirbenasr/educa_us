@@ -71,6 +71,14 @@
 		justify-content: space-around;
 		align-items: start;
 	}
+	@media (max-width: 600px) {
+		.section-body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+	}
 	:global(.active) {
 		opacity: 1 !important;
 		transform: translateX(0px) !important;
