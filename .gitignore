@@ -11,3 +11,4 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 src/lib/videos/educa_video.mp4
+src/lib/images/students/

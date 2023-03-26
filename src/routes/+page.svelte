@@ -1,11 +1,27 @@
-<script>
-	import Counter from './Counter.svelte';
+<script type="ts">
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
-	import Section from './Section.svelte';
+	import Section from '../components/Section.svelte';
 	import educa_video from '$lib/videos/educa_video.mp4';
 	import { browser } from '$app/environment';
 	import education_section from '$lib/images/education_section.jpg';
+	import health_section from '$lib/images/health_section.jpg';
+	import career_section from '$lib/images/career_section.jpg';
+	import { onMount } from 'svelte';
+	import Testimonials from '../components/Testimonials.svelte';
+
+	onMount(() => {
+		document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
+				console.log(this.getAttribute('href'));
+
+				document.querySelector(this.getAttribute('href')).scrollIntoView({
+					behavior: 'smooth'
+				});
+			});
+		});
+	});
 </script>
 
 <svelte:head>
@@ -14,25 +30,95 @@
 </svelte:head>
 
 <div class="full-width">
-	<section>
+	<section class="video-section">
+		<a href="#IT"><span /></a>
 		<video autoplay loop class="educa-video" muted src={educa_video} />
 	</section>
 	<Section
 		props={{
-			sectionId: 'test',
+			sectionId: 'IT',
 			title: 'IT',
 			description:
-				'Occaecat dolor ut eiusmod nostrud esse dolore amet mollit amet sit voluptate tempor. Eiusmod reprehenderit nulla tempor consequat culpa reprehenderit exercitation exercitation quis laborum id magna sunt aliquip. Elit esse cillum consectetur exercitation minim minim minim quis.',
+				'Our IT section offers customized solutions to keep you connected, productive, and secure while traveling. We specialize in network security, cloud computing, data management, and more. Stay ahead of the curve with the latest tools and technologies that are reliable, efficient, and affordable. Let us help you stay connected and productive wherever your travels take you.',
 			color: '#ffffff',
-			image: education_section
+			image: education_section,
+			left: false,
+			position: 'top right'
 		}}
 	/>
 	<Section
-		props={{ sectionId: 'test', title: 'Health Care', description: 'what??', color: '', image: '' }}
+		props={{
+			sectionId: 'test',
+			title: 'Health Care',
+			description:
+				'Traveling for medical treatment or education can be overwhelming. Our healthcare section offers personalized assistance to help you find the best facilities and education worldwide. We prioritize safety, quality, and affordability in our recommendations, ensuring you have access to the most advanced medical treatments and education. Let us be your partner in your healthcare journey.',
+			color: '',
+			image: career_section,
+			left: true,
+			position: 'top left'
+		}}
 	/>
+	<Section
+		props={{
+			sectionId: 'health',
+			title: 'Health Care',
+			description:
+				'Traveling for medical treatment or education can be overwhelming. Our healthcare section offers personalized assistance to help you find the best facilities and education worldwide. We prioritize safety, quality, and affordability in our recommendations, ensuring you have access to the most advanced medical treatments and education. Let us be your partner in your healthcare journey.',
+			color: '',
+			image: health_section,
+			left: false,
+			position: 'center  top    '
+		}}
+	/>
+	<Testimonials />
 </div>
 
 <style>
+	a span {
+		z-index: 1;
+		position: absolute;
+		left: 50%;
+		bottom: 2px;
+		margin-right: -15px;
+		width: 30px;
+		height: 50px;
+		border: 2px solid #ffffff;
+		border-radius: 50px;
+	}
+	span::before {
+		position: absolute;
+		left: 50%;
+		top: 5px;
+		margin-left: -5px;
+		width: 10px;
+		height: 10px;
+		border-radius: 100%;
+		content: '';
+		background-color: #fff;
+		color: #fff;
+		animation: sdb10 2s infinite;
+	}
+	@keyframes sdb10 {
+		0% {
+			transform: translate(0, 0);
+			opacity: 0;
+		}
+		40% {
+			opacity: 1;
+		}
+		80% {
+			transform: translate(0, 20px);
+			opacity: 0;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+
+	.video-section {
+		position: relative;
+	}
+
 	.full-width {
 		width: 100%;
 	}

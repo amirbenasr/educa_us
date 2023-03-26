@@ -15,6 +15,11 @@
 	font-family: var(--font-body);
 	color: var(--color-text);
 }
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
 
 body {
 	min-height: 100vh;
@@ -58,7 +63,9 @@ pre {
 	justify-content: center;
 	margin: 0 auto;
 }
-
+.section-title {
+	padding: 2rem;
+}
 input,
 button {
 	font-size: inherit;
@@ -89,6 +96,7 @@ button:focus:not(:focus-visible) {
 
 p {
 	margin-bottom: 1rem;
+	line-height: 1.125rem;
 }
 
 h1,

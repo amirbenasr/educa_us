@@ -78,7 +78,7 @@
 		position: fixed;
 		z-index: 9999;
 		width: 100%;
-		height: 80px;
+		height: 60px;
 		align-items: center;
 		justify-content: space-between;
 		transition: all 200ms ease-in;
@@ -91,7 +91,7 @@
 	}
 
 	:global(.shrink-header) {
-		height: 60px !important;
+		height: 50px !important;
 	}
 
 	.corner a {
