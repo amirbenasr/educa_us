@@ -1,28 +1,75 @@
 <script>
+	import { onDestroy, onMount } from 'svelte';
 	import { testimonials } from '../utils';
+	import Testimonial from './Testimonial.svelte';
+	let index = 0;
+	const scrollInterval = setInterval(() => {
+		console.log("what's going on");
+		if (index > 4) {
+			index = 0;
+			return;
+		}
+		index += 1;
+	}, 3000);
+
+	onDestroy(() => {
+		clearInterval(scrollInterval);
+	});
 </script>
 
 <section class="testimonials">
 	<div class="section-title">
 		<h1>Testimonials</h1>
 	</div>
-	<div class="section-body">
-		<div class="section-left">left</div>
-		<div class="section-right">right</div>
+	<div class="testimonials-slider">
+		{#key index}
+			<Testimonial testimonial={testimonials[index]} />
+		{/key}
 	</div>
-	<div class="section-footer">circles</div>
+	<div class="section-footer">
+		{#each testimonials as testimonial, currentIndex}
+			<div
+				class="slider-avatar"
+				on:keydown={() => {}}
+				on:click={(e) => {
+					index = currentIndex;
+				}}
+			>
+				<img
+					class:active={currentIndex == index}
+					src="/students/Photos/{testimonial.image}.jpg"
+					alt=""
+					srcset=""
+				/>
+			</div>
+		{/each}
+	</div>
 </section>
 
 <style>
-	.section-body {
+	.slider-avatar {
+		padding-left: 1rem;
+		cursor: pointer;
+	}
+	.slider-avatar img {
+		object-fit: cover;
+		height: 2rem;
+		width: 2rem;
+		border-radius: 100%;
+		border: 2px solid #fff;
+	}
+	img.active {
+		border: 1px solid blue;
+	}
+	.testimonials-slider {
 		display: flex;
-		justify-content: space-around;
+		width: 100%;
 	}
 	.section-footer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
 		height: 80px;
-		background-color: red;
-	}
-	.testimonials {
-		height: 64rem;
 	}
 </style>

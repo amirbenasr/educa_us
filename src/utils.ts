@@ -1,4 +1,4 @@
-type Testimonial = {
+export type Testimonial = {
 	image: string;
 	student_name: string;
 	testimonial: string;
